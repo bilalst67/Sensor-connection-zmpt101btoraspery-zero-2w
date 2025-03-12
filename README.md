@@ -1,15 +1,52 @@
-With this program, you will be able to extract the data from the sensor, read this data in another file and convert it into your graph.
-So, how do we do this? First of all, I will tell you the materials I have: \n
-1 Raspery pi zero 2w \n
-1 zmpt101b \n
-4 female to female cable\n
-The arrangement of the cables will be as follows: zmpt gnd to zero gnd,\n
-zmpt gnd to zero gnd, zmpt out to zero any gpio, zmpt vcc to zero will be plugged into 5v pin or 3.3 v pin.\n
-Then we will throw the codes we wrote into our zero and run the terminal, but of course, first of all, \n
-replace the pin value in the data_writing file with the pin you installed yourself (the place we call zero's any gpio) and save it,\n
-then make the connections, you are done electronically, all you have to do is plug the ends of the place where you want to measure \n
-the volts with zmpty, but let me tell you something like this: zmpt returns an adc value, but zero 2w cannot get this value on its own,\n
-so tell us It will return 1 or 0. If you want to return a different value, find a tool that converts the analog current to digital \n
-current and put it between the two, but this code does not work for them. After setting the voltage location, run your Raspery Zero 2w,\n
-enter the terminal and write the location of the files of the code I wrote into the terminal, how "python3 home/pi/veri/veri_write.py" \n
-(write without quotes, write first, then read) and Our program is completed.
+# Sensor Data Extraction and Graphing
+
+This project allows you to extract data from a sensor, read the data from a separate file, and convert it into a graph.
+
+## Materials Required
+- **Raspberry Pi Zero 2W**
+- **ZMPT101B Voltage Sensor**
+- **4 Female-to-Female Jumper Wires**
+
+## Wiring Instructions
+Connect the ZMPT101B sensor to the Raspberry Pi Zero 2W as follows:
+
+| ZMPT101B Pin | Raspberry Pi Pin |
+|-------------|-----------------|
+| **GND** | **GND** |
+| **OUT** | **Any GPIO Pin** |
+| **VCC** | **5V or 3.3V** |
+
+## Setup and Execution
+1. **Modify the Code:**
+   - Open the `veri_write.py` file.
+   - Update the **GPIO pin number** to match the one you connected the ZMPT101B OUT pin to.
+   - Save the file.
+
+2. **Connect the Components:**
+   - Ensure all the connections are secure.
+   - Connect the ZMPT101B sensor to the voltage source you want to measure.
+
+3. **Run the Program:**
+   - Open the terminal on Raspberry Pi.
+   - Navigate to the folder containing your code.
+   - Run the following commands:
+     ```bash
+     python3 /home/pi/veri/veri_write.py
+     ```
+     *(This writes the sensor data to a file.)*
+     
+     ```bash
+     python3 /home/pi/veri/veri_read.py
+     ```
+     *(This reads the data and generates a graph.)*
+
+## Important Notes
+- The ZMPT101B sensor outputs **analog data**, but the Raspberry Pi Zero 2W does **not** have a built-in ADC (Analog-to-Digital Converter).
+- Without an ADC (like ADS1015), the Raspberry Pi will only recognize **high (1) or low (0) signals**.
+- If you need actual voltage values, use an **ADC module** to convert the analog signal into digital values.
+
+---
+
+## License
+
+This project is licensed under the **MIT License**. See the `LICENSE` file for more details.
