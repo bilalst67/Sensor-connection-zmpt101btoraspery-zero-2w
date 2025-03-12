@@ -49,4 +49,4 @@ Connect the ZMPT101B sensor to the Raspberry Pi Zero 2W as follows:
 
 ## License
 
-This project is licensed under the **MIT License**. See the `LICENSE` file for more details.
+This project is licensed under the General Public License - see the [LICENSE](LICENSE) file for details.
